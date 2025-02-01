@@ -1,0 +1,83 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <title>Title</title>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <style>
+        .error {
+            color: red;
+        }
+    </style>
+</head>
+  <body>
+      <div class="container mt-5">
+        <h2>Registration Form</h2>
+        <form id="myForm"> <!-- Corrected the form ID -->
+            <div class="form-group">
+                <label for="name">Name</label>
+                <input type="text" class="form-control" id="name" placeholder="Enter name">
+                <span class="error" id="nameError"></span>
+            </div>
+            <div class="form-group">
+                <label for="email">Email address</label>
+                <input type="email" class="form-control" id="email" placeholder="Enter email">
+                <span class="error" id="emailError"></span>
+            </div>
+            <div class="form-group">
+                <label for="password">Password</label>
+                <input type="password" class="form-control" id="password" placeholder="Enter password">
+                <span class="error" id="passwordError"></span>
+            </div>
+            <input type="submit" class="btn btn-primary" value="submit" />
+        </form>
+      </div>
+
+    <!-- Optional JavaScript -->
+    <script>
+        const form = document.getElementById('myForm'); // Corrected the form ID
+        const nameError  =  document.getElementById('nameError');
+        const emailError  =  document.getElementById('emailError');
+        const passwordError  =  document.getElementById('passwordError');
+        
+        form.addEventListener('submit', function(event){
+            nameError.textContent = '';
+            emailError.textContent = '';
+            passwordError.textContent = '';
+
+            let isValid = true;
+
+            const nameInput = document.getElementById('name').value.trim();
+            if(nameInput === ''){
+                nameError.textContent = 'Name is required';
+                isValid = false;
+            }
+
+            const emailInput = document.getElementById('email').value.trim();
+            const emailPattern = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,6}$/;
+            if(emailInput === '' || !emailPattern.test(emailInput)){
+                emailError.textContent = 'Please enter a valid email';
+                isValid = false;
+            }
+
+            const passwordInput = document.getElementById('password').value.trim();
+            if(passwordInput === ''){
+                passwordError.textContent = 'Password is required';
+                isValid = false;
+            }
+
+            if(!isValid){
+                event.preventDefault();
+            }    
+        })
+    </script>   
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha384-9/aliU8dGdQs3K+JfXJ8s4+VJ7E3be7w6h5nkJ3K9c7f4nxNAs4zQ5t06Em+S5wE" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+  </body>
+</html>
