@@ -1,0 +1,39 @@
+<!DOCTYPE html >
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link id="theme-style" referrerpolicy="origin" rel="stylesheet" href="day-mode.css">
+    <title>Document</title>
+</head>
+<body dir="rtl">
+    <h1>Welcome To Day/night mode</h1>
+    <button onclick="toggleMode()">Toggle Mode</button>
+    <script>
+        function toggleMode() {
+            const thmeStyle = document.getElementById('theme-style');
+
+            if(thmeStyle.getAttribute('href') === 'day-mode.css'){
+                thmeStyle.setAttribute('href', 'night-mode.css');
+                localStorage.setItem('theme', 'night');
+
+            } else {
+                thmeStyle.setAttribute('href', 'day-mode.css');
+                localStorage.setItem('theme', 'day');
+            }
+        }
+        window.onload = function () {
+            const thmeStyle = document.getElementById('theme-style');
+
+            const saveTheme = localStorage.getItem('theme');
+
+            if(saveTheme === 'night'){
+                thmeStyle.setAttribute('href', 'night-mode.css');
+            } else {
+                thmeStyle.setAttribute('href', 'day-mode.css');
+            }
+        }
+
+    </script>
+</body>
+</html>
